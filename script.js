@@ -1,3 +1,32 @@
+const intro = document.getElementById("intro");
+const introStorageKey = "nicolas-portfolio-intro-seen";
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+const finishIntro = () => {
+  if (!intro) return;
+
+  intro.classList.add("is-hidden");
+  window.setTimeout(() => intro.remove(), 650);
+};
+
+if (intro) {
+  let hasSeenIntro = false;
+
+  try {
+    hasSeenIntro = sessionStorage.getItem(introStorageKey) === "true";
+    sessionStorage.setItem(introStorageKey, "true");
+  } catch (error) {
+    console.warn("Não foi possível registrar a intro nesta sessão.", error);
+  }
+
+  if (hasSeenIntro || prefersReducedMotion) {
+    finishIntro();
+  } else {
+    window.setTimeout(finishIntro, 4500);
+  }
+
+}
+
 // Spotlight que segue o mouse
 const spotlight = document.getElementById("spotlight");
 window.addEventListener("mousemove", (e) => {

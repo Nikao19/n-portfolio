@@ -1,5 +1,5 @@
 :root {
-  --bg: #220239;
+  --bg: #2b0645;
   --text: #dce1e9;
   --heading: #e2e8f0;
   --accent: #8a5ed7;
@@ -27,6 +27,139 @@ body {
   font-size: 16px;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+}
+
+body:has(.intro:not(.is-hidden)) {
+  overflow: hidden;
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(116, 73, 208, 0.18), transparent 34rem),
+    #090815;
+  color: var(--heading);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity 0.6s ease,
+    visibility 0.6s ease;
+}
+
+.intro::before,
+.intro::after {
+  position: absolute;
+  content: "";
+  pointer-events: none;
+}
+
+.intro::before {
+  width: min(72vw, 680px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(138, 94, 215, 0.45), transparent);
+  transform: rotate(-28deg);
+}
+
+.intro::after {
+  inset: 12%;
+  border: 1px solid rgba(138, 94, 215, 0.12);
+  border-radius: 50%;
+}
+
+.intro.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.intro__content {
+  position: relative;
+  z-index: 1;
+  width: min(90vw, 780px);
+  text-align: center;
+}
+
+.intro__eyebrow {
+  margin: 0 0 24px;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  opacity: 0;
+  animation: intro-fade-up 0.8s 0.2s ease forwards;
+}
+
+.intro__title {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 5.8vw, 62px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.tt__box {
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.02em;
+}
+
+.tt__ch {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: intro-letter 0.75s calc(0.35s + var(--i) * 0.09s) cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.tt__space {
+  width: 0.3em;
+}
+
+.intro__line {
+  display: block;
+  width: min(100%, 300px);
+  height: 2px;
+  margin: 28px auto 22px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  transform: scaleX(0);
+  transform-origin: center;
+  animation: intro-line 0.9s 1.75s ease forwards;
+}
+
+.intro__message {
+  margin: 0;
+  color: var(--text);
+  font-size: clamp(14px, 2vw, 17px);
+  letter-spacing: 0.04em;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: intro-fade-up 0.9s 1.95s ease forwards;
+}
+
+@keyframes intro-letter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes intro-line {
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes intro-fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 ::selection {
@@ -434,5 +567,6 @@ a:focus-visible {
   *::before,
   *::after {
     transition: none !important;
+    animation: none !important;
   }
 }
