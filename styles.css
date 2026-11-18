@@ -2,12 +2,12 @@
    1. Design tokens
    ================================================== */
 :root {
-  --bg: #040224;
-  --text: #dce1e9;
-  --heading: #e2e8f0;
-  --accent: #3c08e5;
-  --accent-bg: rgba(94, 234, 212, 0.1);
-  --card-hover: #1d0151;
+  --bg: #02002f;
+  --text: #cbd5e1;
+  --heading: #f8fafc;
+  --accent: #31C239;
+  --accent-bg: rgba(133, 125, 252, 0.1);
+  --card-hover: #1e293b;
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Manrope", sans-serif;
 }
@@ -63,8 +63,8 @@ body:has(.intro:not(.is-hidden)) {
   place-items: center;
   overflow: hidden;
   background:
-    radial-gradient(circle at 50% 45%, rgba(116, 73, 208, 0.18), transparent 34rem),
-    #090815;
+    radial-gradient(circle at 50% 45%, rgba(125, 211, 252, 0.12), transparent 34rem),
+    #0b1220;
   color: var(--heading);
   opacity: 1;
   visibility: visible;
@@ -83,13 +83,13 @@ body:has(.intro:not(.is-hidden)) {
 .intro::before {
   width: min(72vw, 680px);
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(138, 94, 215, 0.45), transparent);
+  background: linear-gradient(90deg, transparent, rgba(125, 211, 252, 0.45), transparent);
   transform: rotate(-28deg);
 }
 
 .intro::after {
   inset: 12%;
-  border: 1px solid rgba(138, 94, 215, 0.12);
+  border: 1px solid rgba(125, 211, 252, 0.12);
   border-radius: 50%;
 }
 
@@ -185,7 +185,7 @@ body:has(.intro:not(.is-hidden)) {
 }
 
 ::selection {
-  background: rgba(94, 234, 212, 0.3);
+  background: rgba(125, 211, 252, 0.3);
   color: var(--heading);
 }
 
@@ -210,7 +210,7 @@ ul {
   pointer-events: none;
   background: radial-gradient(
     100px circle at var(--x, 50%) var(--y, 30%),
-    rgba(122, 29, 216, 0.15),
+    rgba(125, 211, 252, 0.12),
     transparent 80%
   );
 }
@@ -333,8 +333,9 @@ ul {
 }
 
 .socials svg {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
+  vertical-align: middle;
 }
 
 /* ==================================================
@@ -371,7 +372,7 @@ ul {
   z-index: 20;
   margin: 0 -24px 20px;
   padding: 20px 24px;
-  background: rgba(22, 2, 36, 0.85);
+  background: rgba(15, 23, 42, 0.92);
   backdrop-filter: blur(8px);
 }
 
@@ -533,7 +534,7 @@ a.card:hover .arrow {
 }
 
 .button:active::before {
-  background: #390aa6;
+  background: #38bdf8;
   transition: background 0s;
 }
 
@@ -630,31 +631,48 @@ a:focus-visible {
 .lang {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin: 10px 0;
+  gap: 4px;
+  width: fit-content;
+  margin: 24px 0px;
+  padding: 4px;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.1em;
 }
 
 .lang button {
-  padding: 4px 0;
+  min-width: 38px;
+  padding: 6px 10px;
   border: 0;
+  border-radius: 999px;
   background: none;
   color: var(--text);
   font: inherit;
   cursor: pointer;
-  transition: color 0.2s;
+  transition:
+    color 0.2s,
+    background 0.2s;
 }
 
-.lang button:hover,
 .lang button[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--bg);
+}
+
+.lang button:hover:not([aria-pressed="true"]) {
   color: var(--accent);
 }
 
 .lang button:focus-visible {
   outline: 2px solid var(--accent);
-  outline-offset: 4px;
+  outline-offset: 2px;
+}
+
+.lang > span {
+  display: none;
 }
 
 /* ==================================================
@@ -706,7 +724,7 @@ a:focus-visible {
 .timeline {
   position: relative;
   margin-left: 6px;
-  border-left: 1px solid rgba(138, 94, 215, 0.4);
+  border-left: 1px solid rgba(125, 211, 252, 0.4);
 }
 
 .timeline li {
@@ -773,7 +791,7 @@ a:focus-visible {
 }
 
 .tags li.used {
-  background: rgba(138, 94, 215, 0.28);
+  background: rgba(125, 211, 252, 0.12);
   color: var(--heading);
 }
 
