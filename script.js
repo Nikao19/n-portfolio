@@ -35,23 +35,65 @@ window.addEventListener("mousemove", (e) => {
 });
 
 const aboutCopy = document.querySelector(".about-copy");
-if (aboutCopy) {
-  const text = aboutCopy.dataset.text || aboutCopy.textContent.trim();
+let typeTimer;
+
+// Efeito de digitação do "Sobre" (reinicia a cada troca de idioma)
+const startTyping = (text) => {
+  if (!aboutCopy) return;
+  clearTimeout(typeTimer);
+  if (prefersReducedMotion) {
+    aboutCopy.textContent = text;
+    return;
+  }
   aboutCopy.textContent = "";
   let index = 0;
-
   const typeText = () => {
     if (index < text.length) {
       aboutCopy.textContent += text.charAt(index);
       index += 1;
-      setTimeout(typeText, 18);
+      typeTimer = setTimeout(typeText, 18);
     }
   };
+  typeTimer = setTimeout(typeText, 250);
+};
 
-  aboutCopy.style.display = "inline-block";
-  aboutCopy.style.overflow = "hidden";
-  setTimeout(typeText, 250);
+// Idioma (PT / EN)
+const langKey = "nicolas-portfolio-lang";
+const langButtons = document.querySelectorAll("[data-lang]");
+
+const applyLang = (lang, retype = true) => {
+  const dict = translations[lang] || translations.pt;
+  document.documentElement.lang = lang === "en" ? "en" : "pt-BR";
+  document.title = dict["meta.title"];
+  document.querySelector('meta[name="description"]')?.setAttribute("content", dict["meta.desc"]);
+  document.querySelectorAll("[data-i18n]").forEach((el) => {
+    if (dict[el.dataset.i18n] !== undefined) el.textContent = dict[el.dataset.i18n];
+  });
+  document.querySelectorAll("[data-i18n-aria]").forEach((el) => {
+    el.setAttribute("aria-label", dict[el.dataset.i18nAria]);
+  });
+  langButtons.forEach((btn) => btn.setAttribute("aria-pressed", String(btn.dataset.lang === lang)));
+  if (retype) startTyping(dict["about.text"]);
+};
+
+langButtons.forEach((btn) =>
+  btn.addEventListener("click", () => {
+    try {
+      localStorage.setItem(langKey, btn.dataset.lang);
+    } catch (error) {
+      console.warn("Não foi possível salvar o idioma.", error);
+    }
+    applyLang(btn.dataset.lang);
+  })
+);
+
+let savedLang = "pt";
+try {
+  savedLang = localStorage.getItem(langKey) || (navigator.language.startsWith("pt") ? "pt" : "en");
+} catch (error) {
+  savedLang = navigator.language.startsWith("pt") ? "pt" : "en";
 }
+applyLang(savedLang);
 
 // Marca no menu a seção que está na tela
 const sections = document.querySelectorAll(".section");

@@ -1,14 +1,20 @@
+/* ==================================================
+   1. Design tokens
+   ================================================== */
 :root {
-  --bg: #160224;
+  --bg: #040224;
   --text: #dce1e9;
   --heading: #e2e8f0;
-  --accent: #8a5ed7;
+  --accent: #3c08e5;
   --accent-bg: rgba(94, 234, 212, 0.1);
-  --card-hover: #2a1e40;
+  --card-hover: #1d0151;
   --font-heading: "Space Grotesk", sans-serif;
   --font-body: "Manrope", sans-serif;
 }
 
+/* ==================================================
+   2. Base and reset
+   ================================================== */
 *,
 *::before,
 *::after {
@@ -33,6 +39,9 @@ body:has(.intro:not(.is-hidden)) {
   overflow: hidden;
 }
 
+/* ==================================================
+   3. Intro screen
+   ================================================== */
 #bg {
   position: fixed;
   inset: 0;
@@ -191,7 +200,9 @@ ul {
   padding: 0;
 }
 
-/* Spotlight que segue o mouse */
+/* ==================================================
+   4. Spotlight
+   ================================================== */
 .spotlight {
   position: fixed;
   inset: 0;
@@ -204,6 +215,9 @@ ul {
   );
 }
 
+/* ==================================================
+   5. Skip link
+   ================================================== */
 .skip-link {
   position: absolute;
   left: 12px;
@@ -220,13 +234,18 @@ ul {
   top: 12px;
 }
 
-/* Layout de duas colunas */
+/* ==================================================
+   6. Page layout
+   ================================================== */
 .layout {
   max-width: 1280px;
   margin: 0 auto;
   padding: 48px 24px;
 }
 
+/* ==================================================
+   7. Sidebar
+   ================================================== */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -254,7 +273,7 @@ ul {
   max-width: 320px;
 }
 
-/* Navegação lateral (só desktop) */
+/* Navigation */
 .nav {
   display: none;
 }
@@ -292,7 +311,7 @@ ul {
   background: var(--heading);
 }
 
-/* Redes sociais */
+/* Social links */
 .socials {
   display: flex;
   align-items: center;
@@ -318,7 +337,9 @@ ul {
   height: 24px;
 }
 
-/* Conteúdo */
+/* ==================================================
+   8. Main content
+   ================================================== */
 .content {
   padding-top: 64px;
 }
@@ -335,14 +356,14 @@ ul {
 .section-title {
   display: none;
   margin: 0 0 20px;
-  font-size: 14px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--heading);
 }
 
-/* No mobile o título de seção fica visível e fixo no topo */
+/* Mobile section title */
 .section-title {
   display: block;
   position: sticky;
@@ -350,11 +371,13 @@ ul {
   z-index: 20;
   margin: 0 -24px 20px;
   padding: 20px 24px;
-  background: rgba(15, 23, 42, 0.85);
+  background: rgba(22, 2, 36, 0.85);
   backdrop-filter: blur(8px);
 }
 
-/* Cards de projeto */
+/* ==================================================
+   9. Project cards
+   ================================================== */
 .cards {
   display: grid;
   gap: 16px;
@@ -377,7 +400,7 @@ a.card:hover {
 }
 
 .card-status {
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -410,7 +433,9 @@ a.card:hover .arrow {
   font-size: 14px;
 }
 
-/* Tags */
+/* ==================================================
+   10. Tags
+   ================================================== */
 .tags {
   display: flex;
   flex-wrap: wrap;
@@ -428,7 +453,9 @@ a.card:hover .arrow {
   line-height: 1.6;
 }
 
-/* Skills */
+/* ==================================================
+   11. Skills
+   ================================================== */
 .skill-group {
   margin-bottom: 24px;
 }
@@ -465,7 +492,9 @@ a.card:hover .arrow {
   margin-top: 10px;
 }
 
-/* Botão */
+/* ==================================================
+   12. Buttons
+   ================================================== */
 .button {
   --color: var(--accent);
   position: relative;
@@ -504,10 +533,13 @@ a.card:hover .arrow {
 }
 
 .button:active::before {
-  background: #3a0ca3;
+  background: #390aa6;
   transition: background 0s;
 }
 
+/* ==================================================
+   13. Footer and accessibility
+   ================================================== */
 .footer {
   padding-bottom: 32px;
   font-size: 14px;
@@ -519,7 +551,9 @@ a:focus-visible {
   border-radius: 4px;
 }
 
-/* Desktop: sidebar fixa à esquerda */
+/* ================================================== 
+    14. Desktop layout
+   ================================================== */
 @media (min-width: 1024px) {
   .layout {
     display: flex;
@@ -574,6 +608,9 @@ a:focus-visible {
   }
 }
 
+/* ==================================================
+   15. Reduced motion
+   ================================================== */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -584,5 +621,169 @@ a:focus-visible {
   *::after {
     transition: none !important;
     animation: none !important;
+  }
+}
+
+/* ==================================================
+   16. Language selector
+   ================================================== */
+.lang {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 10px 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.lang button {
+  padding: 4px 0;
+  border: 0;
+  background: none;
+  color: var(--text);
+  font: inherit;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.lang button:hover,
+.lang button[aria-pressed="true"] {
+  color: var(--accent);
+}
+
+.lang button:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+}
+
+/* ==================================================
+   17. Areas of activity
+   ================================================== */
+.areas {
+  display: grid;
+  gap: 16px;
+}
+
+.area {
+  display: block;
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.area:hover {
+  background: var(--card-hover);
+  box-shadow: inset 0 1px 0 0 rgba(221, 212, 228, 0.463);
+}
+
+.area:hover h3 {
+  color: var(--accent);
+}
+
+.area svg {
+  width: 28px;
+  height: 28px;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+.area h3 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--heading);
+}
+
+.area p {
+  margin: 8px 0 0;
+  font-size: 14px;
+}
+
+/* ==================================================
+   18. Journey timeline
+   ================================================== */
+.timeline {
+  position: relative;
+  margin-left: 6px;
+  border-left: 1px solid rgba(138, 94, 215, 0.4);
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 28px 28px;
+}
+
+.timeline li:last-child {
+  padding-bottom: 0;
+}
+
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: 6px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+}
+
+.timeline li:last-child::before {
+  background: var(--accent);
+}
+
+.timeline h3 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--heading);
+}
+
+.timeline p {
+  margin: 4px 0 0;
+  font-size: 14px;
+}
+
+/* ==================================================
+   19. Technology legend and tag states
+   ================================================== */
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 0 0 20px;
+  font-size: 14px;
+}
+
+.legend span::before {
+  content: "";
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.legend .is-study::before {
+  background: none;
+  border: 1px dashed var(--accent);
+}
+
+.tags li.used {
+  background: rgba(138, 94, 215, 0.28);
+  color: var(--heading);
+}
+
+.tags li.study {
+  background: none;
+  border: 1px dashed var(--accent);
+}
+
+@media (min-width: 1024px) {
+  .area {
+    grid-template-columns: 1fr;
   }
 }
