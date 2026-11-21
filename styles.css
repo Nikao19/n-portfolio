@@ -2,10 +2,10 @@
    1. Design tokens
    ================================================== */
 :root {
-  --bg: #02002f;
+  --bg: #12121c;
   --text: #cbd5e1;
   --heading: #f8fafc;
-  --accent: #31C239;
+  --accent: #5239e2;
   --accent-bg: rgba(133, 125, 252, 0.1);
   --card-hover: #1e293b;
   --font-heading: "Space Grotesk", sans-serif;
